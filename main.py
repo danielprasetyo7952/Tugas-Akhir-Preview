@@ -1,5 +1,7 @@
 import streamlit as st
-import function as f
+import func as f
+
+f.config()
 
 st.title("Prediksi Harga Beli Mata Uang Asing Terhadap Rupiah")  
 
