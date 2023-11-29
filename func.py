@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import altair as alt
 import tensorflow as tf
+import datetime
 from sklearn.preprocessing import MinMaxScaler
 
 def config():
@@ -136,20 +137,26 @@ def predict_model(dataset, model, future_steps):
     # Assuming you have the following variables defined:
     # last_sequence, predictions, and actual
     
-    st.write("See Plot for Future Predictions")
+    # st.write("See Plot for Future Predictions")
     # Create a Matplotlib figure and axis
-    fig, ax = plt.subplots()
+    # fig, ax = plt.subplots()
 
     # Plot your data
-    ax.plot(last_sequence['Close'], label="Last Sequence")
-    ax.plot(predictions['Close'], label="Predictions")
+    # ax.plot(last_sequence['Close'], label="Last Sequence")
+    # ax.plot(predictions['Close'], label="Predictions")
     # ax.plot(actual['Close'][:future_steps], label="Actual Close")
 
     # Customize the plot
-    ax.set_title("Predicted Future of {} days".format(future_steps))
-    ax.set_xlabel("Days")
-    ax.set_ylabel("Price")
-    ax.legend()
+    # ax.set_title("Predicted Future of {} days".format(future_steps))
+    # ax.set_xlabel("Days")
+    # ax.set_ylabel("Price")
+    # ax.legend()
 
     # Display the Matplotlib plot in Streamlit
-    st.pyplot(fig)
+    # st.pyplot(fig)
+    
+    st.write(f"Harga Mata Uang {future_steps} hari ke depan")
+    date = datetime.datetime(2023, 6, 1)
+    for value in predictions['Close']:
+        st.markdown("- " + date.strftime("%d %B %Y") + " : " + str(value))
+        date += datetime.timedelta(days=1)
