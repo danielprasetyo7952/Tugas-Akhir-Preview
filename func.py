@@ -174,7 +174,7 @@ def load_model(forex_type):
     Raises:
         OSError: If the model file does not exist.
     """
-    model_path = f"model\{forex_type}_Model.h5"
+    model_path = f"./model/{forex_type}_Model.h5"
     model = tf.keras.models.load_model(model_path)
     return model
 
