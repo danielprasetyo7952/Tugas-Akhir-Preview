@@ -228,7 +228,7 @@ def predict_model(dataset, model, future_steps):
     st.write(f"Harga Mata Uang {future_steps} hari ke depan")
     date = datetime.datetime(2023, 6, 1)
     for value in predictions['Close']:
-        st.markdown("- " + date.strftime("%d %B %Y") + " : " + format(value, ".3f"))
+        st.markdown("- " + date.strftime("%d %B %Y") + " : Rp {:0,.3f}".format(value))
         date += datetime.timedelta(days=1)
     
     # data = pd.DataFrame({
