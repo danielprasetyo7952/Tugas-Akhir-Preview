@@ -200,11 +200,11 @@ def predict_model(dataset, model, future_steps):
         >>> future_steps = "5 days"
         >>> predict_model(dataset, model, future_steps)
         Harga Mata Uang 5 hari ke depan
-        - 01 June 2023 : 5.5
-        - 02 June 2023 : 6.0
-        - 03 June 2023 : 6.5
-        - 04 June 2023 : 7.0
-        - 05 June 2023 : 7.5
+        - 01 June 2023 : Rp 5.5
+        - 02 June 2023 : Rp 6.0
+        - 03 June 2023 : Rp 6.5
+        - 04 June 2023 : Rp 7.0
+        - 05 June 2023 : Rp 7.5
     """
     scaler, X_test = preprocessing(data=dataset)
     
@@ -225,7 +225,7 @@ def predict_model(dataset, model, future_steps):
     last_sequence = pd.DataFrame(last_sequence, columns=['Close'])
     predictions.index += len(last_sequence)
     
-    st.write(f"Harga Mata Uang {future_steps} hari ke depan")
+    st.subheader(f"Harga Mata Uang {future_steps} hari ke depan")
     date = datetime.datetime(2023, 6, 1)
     for value in predictions['Close']:
         st.markdown("- " + date.strftime("%d %B %Y") + " : **Rp {:0,.3f}".format(value) + "**")
