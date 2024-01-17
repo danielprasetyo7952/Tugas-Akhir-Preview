@@ -227,9 +227,20 @@ def predict_model(dataset, model, future_steps):
     
     st.subheader(f"Harga Mata Uang {future_steps} hari ke depan")
     date = datetime.datetime(2023, 6, 1)
-    for value in predictions['Close']:
-        st.markdown("- " + date.strftime("%d %B %Y") + " : **Rp {:0,.3f}".format(value) + "**")
-        date += datetime.timedelta(days=1)
+    
+    col1, col2 = st.columns([2, 2])
+    first_half = predictions['Close'][:int(future_steps/2)]
+    second_half = predictions['Close'][int(future_steps/2):]
+    
+    with col1:
+        for value in first_half:
+            st.markdown("- " + date.strftime("%d %B %Y") + " : **Rp {:0,.3f}".format(value) + "**")
+            date += datetime.timedelta(days=1)
+    with col2:
+        for value in second_half:
+            st.markdown("- " + date.strftime("%d %B %Y") + " : **Rp {:0,.3f}".format(value) + "**")
+            date += datetime.timedelta(days=1)
+        
     
     # data = pd.DataFrame({
     #     'Date': range(future_steps),
